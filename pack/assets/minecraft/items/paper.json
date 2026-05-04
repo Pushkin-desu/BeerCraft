@@ -1,20 +1,20 @@
 {
   "model": {
-    "type": "minecraft:select",
+    "type": "minecraft:range_dispatch",
     "property": "minecraft:custom_model_data",
     "index": 0,
-    "cases": [
+    "entries": [
       {
-        "when": [100.0],
+        "threshold": 100,
         "model": {
           "type": "minecraft:model",
-          "model": "minecraft:item/kettle"
+          "model": "item/kettle"
         }
       }
     ],
     "fallback": {
       "type": "minecraft:model",
-      "model": "minecraft:item/paper"
+      "model": "item/paper"
     }
   }
 }

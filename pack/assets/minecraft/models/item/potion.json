@@ -3,18 +3,5 @@
   "textures": {
     "layer0": "item/potion_overlay",
     "layer1": "item/potion"
-  },
-  "overrides": [
-    {"predicate": {"custom_model_data": 1},  "model": "item/beer_bottle_lager"},
-    {"predicate": {"custom_model_data": 2},  "model": "item/beer_bottle_dark_unfiltered"},
-    {"predicate": {"custom_model_data": 3},  "model": "item/beer_bottle_ipa"},
-    {"predicate": {"custom_model_data": 4},  "model": "item/beer_bottle_honey_mead"},
-    {"predicate": {"custom_model_data": 5},  "model": "item/beer_bottle_mushroom_stout"},
-    {"predicate": {"custom_model_data": 6},  "model": "item/beer_bottle_pumpkin_ale"},
-    {"predicate": {"custom_model_data": 7},  "model": "item/beer_bottle_berry_cider"},
-    {"predicate": {"custom_model_data": 8},  "model": "item/beer_bottle_kelp_grog"},
-    {"predicate": {"custom_model_data": 9},  "model": "item/beer_bottle_golden_lager"},
-    {"predicate": {"custom_model_data": 10}, "model": "item/beer_bottle_netherwart_grog"},
-    {"predicate": {"custom_model_data": 11}, "model": "item/beer_bottle_glow_brew"}
-  ]
+  }
 }

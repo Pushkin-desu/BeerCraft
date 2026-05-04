@@ -1,0 +1,24 @@
+{
+  "model": {
+    "type": "minecraft:range_dispatch",
+    "property": "minecraft:custom_model_data",
+    "index": 0,
+    "entries": [
+      {"threshold":  1, "model": {"type": "minecraft:model", "model": "item/beer_bottle_lager"}},
+      {"threshold":  2, "model": {"type": "minecraft:model", "model": "item/beer_bottle_dark_unfiltered"}},
+      {"threshold":  3, "model": {"type": "minecraft:model", "model": "item/beer_bottle_ipa"}},
+      {"threshold":  4, "model": {"type": "minecraft:model", "model": "item/beer_bottle_honey_mead"}},
+      {"threshold":  5, "model": {"type": "minecraft:model", "model": "item/beer_bottle_mushroom_stout"}},
+      {"threshold":  6, "model": {"type": "minecraft:model", "model": "item/beer_bottle_pumpkin_ale"}},
+      {"threshold":  7, "model": {"type": "minecraft:model", "model": "item/beer_bottle_berry_cider"}},
+      {"threshold":  8, "model": {"type": "minecraft:model", "model": "item/beer_bottle_kelp_grog"}},
+      {"threshold":  9, "model": {"type": "minecraft:model", "model": "item/beer_bottle_golden_lager"}},
+      {"threshold": 10, "model": {"type": "minecraft:model", "model": "item/beer_bottle_netherwart_grog"}},
+      {"threshold": 11, "model": {"type": "minecraft:model", "model": "item/beer_bottle_glow_brew"}}
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "item/potion"
+    }
+  }
+}
