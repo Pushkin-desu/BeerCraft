@@ -1,17 +1,10 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/cauldron",
   "textures": {
     "particle": "minecraft:item/kettle_side",
-    "down":     "minecraft:item/kettle_bottom",
-    "up":       "minecraft:item/kettle_top",
-    "north":    "minecraft:item/kettle_side",
-    "south":    "minecraft:item/kettle_side",
-    "east":     "minecraft:item/kettle_side",
-    "west":     "minecraft:item/kettle_side"
-  },
-  "display": {
-    "head":   { "rotation": [0, 0, 0], "translation": [0, 0, 0], "scale": [1, 1, 1] },
-    "ground": { "rotation": [0, 0, 0], "translation": [0, 0, 0], "scale": [1, 1, 1] },
-    "fixed":  { "rotation": [0, 0, 0], "translation": [0, 0, 0], "scale": [1, 1, 1] }
+    "side":     "minecraft:item/kettle_side",
+    "top":      "minecraft:item/kettle_top",
+    "bottom":   "minecraft:item/kettle_bottom",
+    "inside":   "minecraft:item/kettle_inner"
   }
 }
