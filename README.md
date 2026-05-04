@@ -2,7 +2,7 @@
 
 Brewery-lite plugin for Paper 1.21.11+. Brew custom beers in vanilla cauldrons.
 
-[README на русском](README_RU.md)
+[README РЅР° СЂСѓСЃСЃРєРѕРј](README_RU.md)
 
 ## Features
 
@@ -39,7 +39,7 @@ Permission `beercraft.admin` defaults to op.
 1. Place a cauldron, fill with a water bucket.
 2. Place a heat source below (lit campfire, fire, lava source block, etc.).
 3. Right-click the cauldron with each ingredient (one item per click).
-4. Wait. Watch for green particles + level-up sound — that's the moment to bottle.
+4. Wait. Watch for green particles + level-up sound пїЅ that's the moment to bottle.
 5. Right-click with an empty glass bottle to extract one bottle of the brew.
 6. Drink the bottle to gain its effects.
 
