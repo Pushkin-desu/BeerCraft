@@ -1,0 +1,34 @@
+# Tick rate of cauldron simulation (ticks; 20 = 1 sec)
+cauldron-tick-period: 20
+
+# Tolerance window for boil-seconds match
+boil-time-min-multiplier: 0.8
+boil-time-max-multiplier: 1.5
+
+# Result when no recipe matches: drop_swill | nothing
+failed-brew-action: drop_swill
+
+# Periodic state flush to chunk PDC (seconds)
+state-flush-period-seconds: 60
+
+# Heat sources under cauldron
+heat-sources:
+  - CAMPFIRE
+  - SOUL_CAMPFIRE
+  - FIRE
+  - SOUL_FIRE
+  - LAVA
+  - MAGMA_BLOCK
+
+locale: en
+# bStats telemetry. Disabled by default until plugin is registered on bstats.org.
+# Set to true and replace placeholder chart ID in BeerCraftPlugin.java to enable.
+bstats: false
+
+# Resource pack auto-distribution
+resource-pack:
+  enabled: true
+  url: "https://github.com/Pushkin-desu/BeerCraft/releases/download/v1.0.0/beercraft-pack.zip"
+  hash: ""   # SHA-1 of the pack zip (40 hex chars). Leave empty to skip hash verification.
+  required: false   # if true, kick players who refuse the pack
+  prompt-message: "BeerCraft requires its resource pack for custom brewing visuals."

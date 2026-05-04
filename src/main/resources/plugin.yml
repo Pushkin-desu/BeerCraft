@@ -1,0 +1,19 @@
+name: BeerCraft
+version: ${project.version}
+main: io.github.pushkindesu.beercraft.BeerCraftPlugin
+api-version: "1.21"
+description: Vanilla cauldron brewing plugin inspired by Brewery
+authors: [Pushkin-desu]
+website: https://github.com/Pushkin-desu/BeerCraft
+license: MIT
+
+commands:
+  beercraft:
+    description: BeerCraft admin command
+    usage: /beercraft <reload|list|give|info>
+    permission: beercraft.admin
+
+permissions:
+  beercraft.admin:
+    description: Access to /beercraft admin commands
+    default: op

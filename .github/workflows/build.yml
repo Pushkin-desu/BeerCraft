@@ -1,0 +1,69 @@
+name: Build
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B clean package --file pom.xml
+
+      - name: Build resource pack zip
+        run: |
+          cd pack
+          zip -r ../beercraft-pack.zip .
+          cd ..
+          sha1sum beercraft-pack.zip | tee pack-sha1.txt
+          echo "PACK_SHA1=$(sha1sum beercraft-pack.zip | awk '{print $1}')" >> $GITHUB_ENV
+
+      - name: Show pack contents (verify forward slashes)
+        run: unzip -l beercraft-pack.zip | head -20
+
+      - name: Upload jar artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: beercraft-jar
+          path: target/beercraft-*.jar
+        if-no-files-found: error
+
+      - name: Upload pack artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: beercraft-pack
+          path: |
+            beercraft-pack.zip
+            pack-sha1.txt
+        if-no-files-found: error
+
+      - name: Attach to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            target/beercraft-*.jar
+            beercraft-pack.zip
+            pack-sha1.txt
+          body: |
+            ## Resource pack
+            SHA-1: `${{ env.PACK_SHA1 }}`
+            Pack URL for `config.yml`:
+            ```
+            https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/beercraft-pack.zip
+            ```

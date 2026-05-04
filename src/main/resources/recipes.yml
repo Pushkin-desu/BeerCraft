@@ -1,0 +1,164 @@
+recipes:
+  lager:
+    display-name: "Lager"
+    lore:
+      - "Light beer"
+    custom-model-data: 1
+    color: "#F5DEB3"
+    ingredients:
+      WHEAT: 3
+      SUGAR: 1
+    boil-seconds: 30
+    effects:
+      - type: SPEED
+        duration: 60
+        amplifier: 0
+  dark_unfiltered:
+    display-name: "Dark Unfiltered"
+    lore:
+      - "Thick dark beer"
+    custom-model-data: 2
+    color: "#3B2412"
+    ingredients:
+      WHEAT: 4
+      COCOA_BEANS: 2
+    boil-seconds: 45
+    effects:
+      - type: STRENGTH
+        duration: 45
+        amplifier: 0
+      - type: SLOWNESS
+        duration: 30
+        amplifier: 0
+  ipa:
+    display-name: "IPA"
+    lore:
+      - "Hoppy bitter beer"
+    custom-model-data: 3
+    color: "#D4A017"
+    ingredients:
+      WHEAT: 3
+      SWEET_BERRIES: 2
+      SUGAR: 1
+    boil-seconds: 60
+    effects:
+      - type: HASTE
+        duration: 90
+        amplifier: 1
+  honey_mead:
+    display-name: "Honey Mead"
+    lore:
+      - "Sweet golden mead"
+    custom-model-data: 4
+    color: "#FFC857"
+    ingredients:
+      WHEAT: 2
+      HONEY_BOTTLE: 1
+      SUGAR: 1
+    boil-seconds: 35
+    effects:
+      - type: REGENERATION
+        duration: 20
+        amplifier: 0
+  mushroom_stout:
+    display-name: "Mushroom Stout"
+    lore:
+      - "Earthy and dark"
+    custom-model-data: 5
+    color: "#2A1A0A"
+    ingredients:
+      WHEAT: 3
+      BROWN_MUSHROOM: 2
+      RED_MUSHROOM: 1
+    boil-seconds: 50
+    effects:
+      - type: NIGHT_VISION
+        duration: 120
+        amplifier: 0
+  pumpkin_ale:
+    display-name: "Pumpkin Ale"
+    lore:
+      - "Spiced autumn brew"
+    custom-model-data: 6
+    color: "#D2691E"
+    ingredients:
+      WHEAT: 2
+      PUMPKIN: 1
+      SUGAR: 1
+    boil-seconds: 40
+    effects:
+      - type: ABSORPTION
+        duration: 60
+        amplifier: 1
+  berry_cider:
+    display-name: "Berry Cider"
+    lore:
+      - "Sharp and fruity"
+    custom-model-data: 7
+    color: "#B22222"
+    ingredients:
+      SWEET_BERRIES: 4
+      SUGAR: 2
+    boil-seconds: 25
+    effects:
+      - type: JUMP_BOOST
+        duration: 60
+        amplifier: 1
+  kelp_grog:
+    display-name: "Kelp Grog"
+    lore:
+      - "Tastes like the sea"
+    custom-model-data: 8
+    color: "#2E5339"
+    ingredients:
+      WHEAT: 2
+      DRIED_KELP: 3
+      SUGAR: 1
+    boil-seconds: 30
+    effects:
+      - type: WATER_BREATHING
+        duration: 90
+        amplifier: 0
+  golden_lager:
+    display-name: "Golden Lager"
+    lore:
+      - "Glints of gold"
+    custom-model-data: 9
+    color: "#FFD700"
+    ingredients:
+      WHEAT: 3
+      GOLDEN_CARROT: 1
+      SUGAR: 1
+    boil-seconds: 50
+    effects:
+      - type: FIRE_RESISTANCE
+        duration: 90
+        amplifier: 0
+  netherwart_grog:
+    display-name: "Netherwart Grog"
+    lore:
+      - "Burns going down"
+    custom-model-data: 10
+    color: "#8B0000"
+    ingredients:
+      NETHER_WART: 3
+      WHEAT: 2
+    boil-seconds: 60
+    effects:
+      - type: STRENGTH
+        duration: 60
+        amplifier: 1
+  glow_brew:
+    display-name: "Glow Brew"
+    lore:
+      - "Faintly luminous"
+    custom-model-data: 11
+    color: "#9ACD32"
+    ingredients:
+      WHEAT: 3
+      GLOW_BERRIES: 3
+    boil-seconds: 45
+    effects:
+      - type: GLOWING
+        duration: 90
+        amplifier: 0
