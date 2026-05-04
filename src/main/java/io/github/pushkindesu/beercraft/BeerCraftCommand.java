@@ -39,11 +39,13 @@ public class BeerCraftCommand implements CommandExecutor, TabCompleter {
         }
 
         switch (args[0].toLowerCase()) {
-            case "reload" -> handleReload(sender);
-            case "list"   -> handleList(sender);
-            case "give"   -> handleGive(sender, args);
-            case "info"   -> handleInfo(sender);
-            default       -> sendHelp(sender, label);
+            case "reload"      -> handleReload(sender);
+            case "list"        -> handleList(sender);
+            case "give"        -> handleGive(sender, args);
+            case "info"        -> handleInfo(sender);
+            case "sober"       -> handleSober(sender, args);
+            case "drunkstatus" -> handleDrunkStatus(sender, args);
+            default            -> sendHelp(sender, label);
         }
         return true;
     }
@@ -160,6 +162,54 @@ public class BeerCraftCommand implements CommandExecutor, TabCompleter {
                 .build());
     }
 
+    private void handleSober(CommandSender sender, String[] args) {
+        if (args.length < 2) {
+            sender.sendMessage(Component.text("Usage: /beercraft sober <player>").color(NamedTextColor.RED));
+            return;
+        }
+        Player target = Bukkit.getPlayerExact(args[1]);
+        if (target == null) {
+            sender.sendMessage(Component.text("Player not found: " + args[1]).color(NamedTextColor.RED));
+            return;
+        }
+        plugin.drunknessTracker.sober(target);
+        sender.sendMessage(Component.text(
+                plugin.msg.get("sober_success", Map.of("player", target.getName())))
+                .color(NamedTextColor.GREEN));
+    }
+
+    private void handleDrunkStatus(CommandSender sender, String[] args) {
+        Player target;
+        if (args.length >= 2) {
+            target = Bukkit.getPlayerExact(args[1]);
+            if (target == null) {
+                sender.sendMessage(Component.text("Player not found: " + args[1]).color(NamedTextColor.RED));
+                return;
+            }
+        } else if (sender instanceof Player p) {
+            target = p;
+        } else {
+            sender.sendMessage(Component.text("Usage: /beercraft drunkstatus <player>").color(NamedTextColor.RED));
+            return;
+        }
+
+        int count = plugin.drunknessTracker.getDrinkCount(target);
+        int level = plugin.drunknessTracker.getDrunkLevel(target);
+        String levelName = switch (level) {
+            case 1 -> plugin.msg.get("level_tipsy");
+            case 2 -> plugin.msg.get("level_drunk");
+            case 3 -> plugin.msg.get("level_blackout");
+            default -> plugin.msg.get("level_sober");
+        };
+
+        boolean isSelf = sender instanceof Player p && p.equals(target);
+        String msgKey = isSelf ? "drunkstatus_self" : "drunkstatus_other";
+        Map<String, String> placeholders = isSelf
+                ? Map.of("count", String.valueOf(count), "level", levelName)
+                : Map.of("player", target.getName(), "count", String.valueOf(count), "level", levelName);
+        sender.sendMessage(Component.text(plugin.msg.get(msgKey, placeholders)).color(NamedTextColor.GOLD));
+    }
+
     private void sendHelp(CommandSender sender, String label) {
         sender.sendMessage(Component.text()
                 .append(Component.text("BeerCraft v" + plugin.getPluginMeta().getVersion(), NamedTextColor.GOLD))
@@ -175,12 +225,18 @@ public class BeerCraftCommand implements CommandExecutor, TabCompleter {
                 .append(Component.newline())
                 .append(Component.text("/" + label + " info", NamedTextColor.YELLOW))
                 .append(Component.text(" \u2014 show plugin info", NamedTextColor.GRAY))
+                .append(Component.newline())
+                .append(Component.text("/" + label + " sober <player>", NamedTextColor.YELLOW))
+                .append(Component.text(" \u2014 sober up a player", NamedTextColor.GRAY))
+                .append(Component.newline())
+                .append(Component.text("/" + label + " drunkstatus [player]", NamedTextColor.YELLOW))
+                .append(Component.text(" \u2014 check drunkenness level", NamedTextColor.GRAY))
                 .build());
     }
 
     // ---- Tab completion ----
 
-    private static final List<String> SUBCOMMANDS = List.of("reload", "list", "give", "info");
+    private static final List<String> SUBCOMMANDS = List.of("reload", "list", "give", "info", "sober", "drunkstatus");
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
@@ -201,6 +257,14 @@ public class BeerCraftCommand implements CommandExecutor, TabCompleter {
                     .map(Player::getName)
                     .toList();
             return filterPrefix(players, args[2]);
+        }
+
+        if (args.length == 2 && (args[0].equalsIgnoreCase("sober")
+                || args[0].equalsIgnoreCase("drunkstatus"))) {
+            List<String> players = Bukkit.getOnlinePlayers().stream()
+                    .map(Player::getName)
+                    .toList();
+            return filterPrefix(players, args[1]);
         }
 
         return List.of();

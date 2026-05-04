@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.8]
+
+### Added
+- **Drunkenness mechanic**: Drinking beer now accumulates a drink count stored in player PDC.
+- Four drunkenness levels: sober (0), tipsy (1), drunk (2), blackout (3) — thresholds configurable.
+- Configurable potion effects per level (tipsy/drunk/blackout) in `config.yml` under `drunkenness.effects`.
+- Sobering scheduler: drink count decremented every N minutes if no recent drinks (configurable `sober-rate-minutes`).
+- Blackout stumble: random velocity push at blackout level, chance configurable via `blackout-stumble-chance`.
+- Effects re-applied on player login if still drunk (PDC-persistent across restarts).
+- Permission `beercraft.sober.bypass` — holders are immune to drunkenness mechanics.
+- Admin command `/beercraft sober <player>` — immediately sobers up a player.
+- Admin command `/beercraft drunkstatus [player]` — shows current drink count and level.
+- New message keys: `drunkstatus_self`, `drunkstatus_other`, `sober_success`, `level_sober`, `level_tipsy`, `level_drunk`, `level_blackout` (EN + RU).
+
 ## [0.1.7]
 
 ### Fixed

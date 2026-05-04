@@ -37,7 +37,9 @@ public class DrinkListener implements Listener {
 
         Recipe recipe = recipeOpt.get();
         Player p = event.getPlayer();
-        plugin.getServer().getScheduler().runTask(plugin,
-                () -> recipe.effects.forEach(p::addPotionEffect));
+        plugin.getServer().getScheduler().runTask(plugin, () -> {
+            recipe.effects.forEach(p::addPotionEffect);
+            plugin.drunknessTracker.recordDrink(p);
+        });
     }
 }

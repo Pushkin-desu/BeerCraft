@@ -32,3 +32,27 @@ resource-pack:
   hash: ""   # SHA-1 of the pack zip (40 hex chars). Leave empty to skip hash verification.
   required: false   # if true, kick players who refuse the pack
   prompt-message: "BeerCraft requires its resource pack for custom brewing visuals."
+
+# Drunkenness mechanics
+drunkenness:
+  enabled: true
+  # Drinks within this window count toward drunkenness. Older drinks expire.
+  window-minutes: 5
+  thresholds:
+    tipsy: 1
+    drunk: 3
+    blackout: 6
+  # Sober rate: drink_count decremented by 1 every N minutes if no recent drinks
+  sober-rate-minutes: 5
+  effects:
+    tipsy:
+      - { type: NAUSEA, duration-seconds: 30, amplifier: 0 }
+    drunk:
+      - { type: NAUSEA, duration-seconds: 120, amplifier: 0 }
+      - { type: SLOWNESS, duration-seconds: 120, amplifier: 0 }
+    blackout:
+      - { type: NAUSEA, duration-seconds: 300, amplifier: 1 }
+      - { type: SLOWNESS, duration-seconds: 300, amplifier: 1 }
+      - { type: BLINDNESS, duration-seconds: 300, amplifier: 0 }
+  # Random stumble (velocity push) at blackout level. Chance per tick period (every 60s).
+  blackout-stumble-chance: 0.05

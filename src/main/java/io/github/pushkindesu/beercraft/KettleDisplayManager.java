@@ -10,6 +10,9 @@ import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.util.Transformation;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,6 +43,13 @@ public class KettleDisplayManager {
 
             entity.setItemStack(item);
             entity.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
+            // Scale up 0.2% to prevent z-fighting with the vanilla cauldron block geometry
+            entity.setTransformation(new Transformation(
+                    new Vector3f(0f, 0f, 0f),
+                    new Quaternionf(),
+                    new Vector3f(1.002f, 1.002f, 1.002f),
+                    new Quaternionf()
+            ));
             entity.setPersistent(false);
             entity.setInvulnerable(true);
             entity.setGravity(false);

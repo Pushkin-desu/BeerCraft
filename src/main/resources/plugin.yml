@@ -10,10 +10,13 @@ license: MIT
 commands:
   beercraft:
     description: BeerCraft admin command
-    usage: /beercraft <reload|list|give|info>
+    usage: /beercraft <reload|list|give|info|sober|drunkstatus>
     permission: beercraft.admin
 
 permissions:
   beercraft.admin:
     description: Access to /beercraft admin commands
     default: op
+  beercraft.sober.bypass:
+    description: Immune to drunkenness mechanics.
+    default: false

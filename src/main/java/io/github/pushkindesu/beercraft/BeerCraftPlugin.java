@@ -13,6 +13,7 @@ public final class BeerCraftPlugin extends JavaPlugin {
     public BeerItem beerItem;
     public CauldronManager cauldronManager;
     public KettleDisplayManager kettleDisplayManager;
+    public DrunkennessTracker drunknessTracker;
 
     private BukkitTask cauldronTickTask;
     private BukkitTask stateFlushTask;
@@ -36,6 +37,8 @@ public final class BeerCraftPlugin extends JavaPlugin {
         pm.registerEvents(cauldronManager, this);
         pm.registerEvents(new DrinkListener(this), this);
         pm.registerEvents(new ResourcePackHandler(this), this);
+        drunknessTracker = new DrunkennessTracker(this);
+        pm.registerEvents(drunknessTracker, this);
 
         startSchedulers(cauldronManager);
 
@@ -72,6 +75,8 @@ public final class BeerCraftPlugin extends JavaPlugin {
         long flushTicks = (long) cfg.stateFlushPeriodSeconds * 20L;
         stateFlushTask = getServer().getScheduler().runTaskTimer(
                 this, stateStore::periodicFlush, flushTicks, flushTicks);
+        // Drunkenness tick: every 60 seconds
+        getServer().getScheduler().runTaskTimer(this, drunknessTracker::tick, 1200L, 1200L);
     }
 
     public void restartSchedulers(CauldronManager cm) {
