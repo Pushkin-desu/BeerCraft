@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.7]
+
+### Fixed
+- `KettleDisplayManager.spawn()`: set `ItemDisplayTransform.FIXED` so the kettle
+  model renders as a full-size 3D block in world space (was invisible in NONE mode)
+- `KettleDisplayManager.spawn()`: Y offset changed from `0.0` → `0.5` so the
+  display entity is centred inside the cauldron block
+- `pack/pack.mcmeta`: added `supported_formats: [34, 100]` for forward-compatibility
+  with 1.21.x and future pack format bumps
+
 ## [0.1.6]
 
 ### Added

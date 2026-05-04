@@ -31,7 +31,7 @@ public class KettleDisplayManager {
 
     /** Spawn a kettle ItemDisplay over the cauldron block. Returns the new UUID. */
     public UUID spawn(Location loc) {
-        Location spawnLoc = loc.clone().add(0.5, 0.0, 0.5);
+        Location spawnLoc = loc.clone().add(0.5, 0.5, 0.5);
         ItemDisplay display = loc.getWorld().spawn(spawnLoc, ItemDisplay.class, entity -> {
             ItemStack item = new ItemStack(Material.PAPER);
             ItemMeta meta = item.getItemMeta();
@@ -39,6 +39,7 @@ public class KettleDisplayManager {
             item.setItemMeta(meta);
 
             entity.setItemStack(item);
+            entity.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
             entity.setPersistent(false);
             entity.setInvulnerable(true);
             entity.setGravity(false);
