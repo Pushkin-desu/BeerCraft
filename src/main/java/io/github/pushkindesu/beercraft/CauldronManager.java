@@ -44,6 +44,10 @@ public class CauldronManager implements Listener {
                 toRemove.add(loc);
                 return;
             }
+            // Re-spawn display if it was removed externally (e.g. /kill @e[type=item_display])
+            if (plugin.kettleDisplayManager.getEntity(loc) == null) {
+                plugin.kettleDisplayManager.spawnIfMissing(loc);
+            }
             // Only tick when there are ingredients in the cauldron
             if (state.ingredients.isEmpty()) return;
 

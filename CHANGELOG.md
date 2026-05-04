@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.6]
+
+### Added
+- `KettleDisplayManager`: spawns a `PAPER` `ItemDisplay` (CMD 100 → `item/kettle` model)
+  above each active brewing cauldron; despawns when state is removed; re-spawns on
+  chunk load and if externally killed (detected each cauldron tick)
+- `pack/assets/minecraft/models/item/kettle.json` — full-cube block model using
+  `kettle_*` textures; referenced via `item/paper.json` CMD 100 override
+- `pack/assets/minecraft/models/item/paper.json` — CMD override map for PAPER item
+- `pack/assets/minecraft/textures/item/kettle_{side,top,bottom,inner}.png`
+  (placeholder PNGs; replace with final art from product)
+
+### Changed
+- Cauldron display no longer overrides vanilla cauldron block textures.
+  Only cauldrons with an active `CauldronState` show the kettle overlay.
+- `pack/assets/minecraft/textures/block/cauldron_*.png` removed from pack
+
+### Convention
+- `PAPER` CMD 100 — kettle display overlay
+- `PAPER` CMD 101+ — reserved for future custom items (hops, barley, etc.)
+- `POTION` CMD 1–11 — beer bottle variants (existing)
+
 ## [0.1.5]
 
 ### Added

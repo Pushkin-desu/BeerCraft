@@ -42,6 +42,7 @@ public class CauldronStateStore implements Listener {
         Chunk chunk = loc.getChunk();
         cache.computeIfAbsent(chunk, k -> new HashMap<>())
                 .put(normalise(loc), state);
+        plugin.kettleDisplayManager.spawnIfMissing(normalise(loc));
     }
 
     public void remove(Location loc) {
@@ -50,6 +51,7 @@ public class CauldronStateStore implements Listener {
         if (map == null) return;
         map.remove(normalise(loc));
         if (map.isEmpty()) cache.remove(chunk);
+        plugin.kettleDisplayManager.despawn(normalise(loc));
         // Also remove from PDC
         removePdc(chunk, normalise(loc));
     }
@@ -90,12 +92,14 @@ public class CauldronStateStore implements Listener {
         Map<Location, CauldronState> loaded = loadFromPdc(chunk);
         if (!loaded.isEmpty()) {
             cache.put(chunk, new HashMap<>(loaded));
+            plugin.kettleDisplayManager.handleChunkLoad(chunk);
         }
     }
 
     @EventHandler
     public void onChunkUnload(ChunkUnloadEvent event) {
         Chunk chunk = event.getChunk();
+        plugin.kettleDisplayManager.handleChunkUnload(chunk);
         Map<Location, CauldronState> map = cache.remove(chunk);
         if (map != null) {
             flushChunk(chunk, map);

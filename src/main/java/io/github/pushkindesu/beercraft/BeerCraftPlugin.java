@@ -12,6 +12,7 @@ public final class BeerCraftPlugin extends JavaPlugin {
     public CauldronStateStore stateStore;
     public BeerItem beerItem;
     public CauldronManager cauldronManager;
+    public KettleDisplayManager kettleDisplayManager;
 
     private BukkitTask cauldronTickTask;
     private BukkitTask stateFlushTask;
@@ -22,6 +23,7 @@ public final class BeerCraftPlugin extends JavaPlugin {
         msg         = new Messages(this);
         registry    = new RecipeRegistry(this);
         heatChecker = new HeatSourceChecker(this);
+        kettleDisplayManager = new KettleDisplayManager(this);
         stateStore  = new CauldronStateStore(this);
         beerItem    = new BeerItem(this);
 
@@ -55,6 +57,9 @@ public final class BeerCraftPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (kettleDisplayManager != null) {
+            kettleDisplayManager.despawnAll();
+        }
         if (stateStore != null) {
             stateStore.onDisableFlush();
         }
